@@ -8,73 +8,79 @@
 
 A simple script to print random motivational quotes. Highly influenced by linux command [fortune](https://en.wikipedia.org/wiki/Fortune_(Unix)).
 
+Forked from <https://github.com/mubaris/motivate> (in order to add an option
+for a custom data directory).
+
 ## Features
 * Colored Output
 * Supports `bash` and `zsh`
+* Custom data (quote) directory
 
 ## Requirements
 
-```
-git
-python 3x
-```
+* git
+* python 3x
 
 ## Installation
 
-### Linux/MacOS
+### Global install with sudo (Linux)
 
-```
-$ git clone https://github.com/mubaris/motivate.git
+```sh
+$ git clone https://github.com/ramihovi/motivate.git
 $ cd motivate/motivate
 $ sudo ./install.sh
-$ source ~/.bashrc
 ```
 
 zsh users should replace `.bashrc` with `.zshrc`.
 
-If you have no root priviledge, install in this way:
-```
-$ git clone https://github.com/mubaris/motivate.git
+### User install into home directory
+
+If you have no root privilege, or don't want to install motivate globally
+(e.g. install in a Qubes OS app vm), you can install this way:
+
+```sh
+$ git clone https://github.com/ramihovi/motivate.git
 $ cd motivate
-$ ln -s $PWD/motivate/motivate.py moti
-$ ln -s $PWD/dummy.sh mmoti
-
-$ export PATH=$PWD:$PATH
-$ # echo 'export PATH=$PWD:$PATH' >> ~/.bashrc
-
+$ test -d ~/bin || mkdir ~/bin
+$ ln -s $PWD/motivate.py ~/bin/motivate
+$ # optional alias:
+$ echo "alias motivate='motivate --datadir $PWD/data'" >> [your alias file]
+$ source [your alias file]
 ```
-Later you can run by calling `moti` (a single run) or `mmoti` (keep running until you break it).
-After doing so, I found that python 2.x is enough to run this script.
+
+Please note: you must have "~/bin" in PATH environment variable.
 
 ### Windows
 
-* Make sure you have Python3 on your path.
-* Clone the repository `git clone https://github.com/mubaris/motivate.git`.
-* Add the path to your local clone to your system path.
-* Run `py -3 motivate.py` from the command prompt.
+* Custom data directory option probably doesn't work in Windows (I have no
+  Windows machine for testing.)
 
 ## Update Database
 
-```
-$ git clone https://github.com/mubaris/motivate.git
-$ cd motivate
-$ ./UPDATE
+```sh
+$ cd [cloned repo]
+$ git pull
 ```
 
 ## Usage
 
-```
-$ motivate
+### Normal (global) install or with optional alias added
 
-"When something is important enough, you do it even if the odds are not in your favor."
-		--Elon Musk
+```sh
+$ motivate
+```
+
+### User install into home directory
+
+```sh
+$ motivate --datadir [path to data directory]
+$ # e.g.
+$ motivate --datadir /home/user/Git/motivate/motivate/data
+$ # with the optional alias:
+$ motivate
 ```
 
 ## Contribution
-The most popular way to contribute is adding [new quotes](https://github.com/mubaris/motivate/issues/3). You do it by adding next JSON file in `motivate/data/` directory. The rule is 20 quotes per file.
 
-Before you submit your new JSON file, it is helpful to validate your file at this [website](https://jsonlint.com/) to make sure it is formatly correct.
+Go to <https://github.com/mubaris/motivate>.
 
-But any improvements are welcome - just open a pull request with some description.
-
-You're also welcome to discuss the idea on [Gitter Chat](https://gitter.im/pymotivate/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
