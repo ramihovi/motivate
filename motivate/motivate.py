@@ -21,7 +21,7 @@ def quote():
     if os.name == 'nt':
         data_dir = os.path.join(abspath, 'motivate', 'data')
     else:
-        data_dir = os.path.join('/opt', 'motivate', 'data')
+        data_dir = os.path.expanduser(args.customdatadir)
 
     try:
         num_of_json = len([f for f in os.listdir(data_dir)
@@ -87,6 +87,7 @@ def quote():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='A simple script to print random motivational quotes.')
     parser.add_argument('--no-colors', dest='nocolor', default=False, action='store_true', help='Argument to disable colored output. Disabled by default.')
+    parser.add_argument('--datadir', dest='customdatadir', default='/opt/motivate/data', help='Custom data directory. /opt/motivate/data by default.')
     args = parser.parse_args()
 
     quote()
