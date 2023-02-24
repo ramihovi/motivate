@@ -40,7 +40,7 @@ If you have no root privilege, or don't want to install motivate globally
 
 ```sh
 $ git clone https://github.com/ramihovi/motivate.git
-$ cd motivate
+$ cd motivate/motivate
 $ test -d ~/bin || mkdir ~/bin
 $ ln -s $PWD/motivate.py ~/bin/motivate
 $ # optional alias:
